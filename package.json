@@ -1,43 +1,51 @@
 {
-  "name": "jwt-decode",
-  "version": "2.2.0",
-  "description": "Decode JWT tokens, mostly useful for browser applications.",
-  "main": "lib/index.js",
+  "name": "jwt-decode-es",
+  "version": "3.0.1",
+  "description": "Decode JWT tokens. Use with NodeJs and browsers. Supports ES, CJS, UMD modules",
+  "main": "build/jwt-decode.cjs.js",
+  "browser": "build/jwt-decode.js",
+  "module": "build/jwt-decode.mjs",
+  "es2015": "build/jwt-decode.mjs",
   "keywords": [
     "jwt",
     "browser"
   ],
   "scripts": {
-    "test": "grunt test"
+    "test": "npm run build && npm run test-node && npm run test-phantom",
+    "test-phantom": "testem -f testem_dev.yml ci -l PhantomJs",
+    "test-desktop": "testem ci -l bs_chrome,bs_firefox,bs_ie_8,bs_ie_9,bs_ie_10",
+    "test-mobile": "testem ci -l bs_iphone_5",
+    "test-node": "mocha --require esm",
+    "rollup": "rollup",
+    "testem": "testem",
+    "build": "npm run build:umd && npm run build:cjs && npm run build:mjs && npm run build:min",
+    "build:min": "npm run build:umd-min && npm run build:cjs-min && npm run build:mjs-min",
+    "build:umd": "rollup lib/index.mjs --file build/jwt-decode.js --format umd -n jwt_decode_es --sourcemap -p buble",
+    "build:umd-min": "rollup lib/index.mjs --file build/jwt-decode.min.js --format umd -n jwt_decode_es --sourcemap -p buble -p terser",
+    "build:cjs": "rollup lib/index.mjs --file build/jwt-decode.cjs.js --format cjs --sourcemap -p buble",
+    "build:cjs-min": "rollup lib/index.mjs --file build/jwt-decode.cjs.min.js --format cjs --sourcemap -p buble -p terser",
+    "build:mjs": "rollup lib/index.mjs --file build/jwt-decode.mjs --format es --sourcemap",
+    "build:mjs-min": "rollup lib/index.mjs --file build/jwt-decode.min.mjs --format es --sourcemap -p terser"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/auth0/jwt-decode"
+    "url": "git://github.com/mentatxx/jwt-decode-es"
   },
-  "author": "Jose F. Romaniello <jfromaniello@gmail.com> (http://joseoncode.com)",
+  "author": "Alexey Petushkov <mentatxx@gmail.com>, Jose F. Romaniello <jfromaniello@gmail.com> (http://joseoncode.com)",
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
-    "expect.js": "~0.2.0",
-    "grunt": "~0.4.0",
-    "grunt-browserify": "~5.0.0",
-    "grunt-cli": "~0.1.9",
-    "grunt-contrib-clean": "~0.5.0",
-    "grunt-contrib-connect": "~0.5.0",
-    "grunt-contrib-copy": "~0.4.1",
-    "grunt-contrib-uglify": "~0.2.4",
-    "grunt-contrib-watch": "~0.2.0",
-    "grunt-exec": "~0.4.2",
-    "grunt-s3": "~0.2.0-alpha.3",
-    "mocha": "~1.13.0",
-    "rimraf": "~2.2.2",
-    "testem": "~0.5.8",
-    "uglify-js": "^2.8.29"
+    "@rollup/plugin-buble": "^0.21.3",
+    "esm": "^3.2.25",
+    "expect.js": "^0.3.1",
+    "mocha": "^8.1.2",
+    "rimraf": "^3.0.2",
+    "rollup": "^2.26.6",
+    "rollup-plugin-terser": "^7.0.0",
+    "testem": "^3.2.0"
   },
   "files": [
     "lib/",
-    "build/",
-    "jwt-decode.html",
-    "standalone.js"
+    "build/"
   ]
 }
