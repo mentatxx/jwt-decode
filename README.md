@@ -7,7 +7,9 @@ This is a fork of [jwt-decode](https://github.com/auth0/jwt-decode) library whic
 
 Install with npm `npm i --save jwt-decode-es`
 
-It provides ES, UMD, CJS modules.
+In comparison with `jwt-decode`, it provides ES, UMD and CJS modules and has latest build dependencies
+with fixed vulnerbilities. It uses [rollup](https://rollupjs.org/) bundler with terser plugin to minify sources.
+Current version is just `1.25 Kb` for minified `.mjs` version.
 
 ## Usage
 
