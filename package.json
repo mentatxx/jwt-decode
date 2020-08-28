@@ -1,6 +1,6 @@
 {
   "name": "jwt-decode-es",
-  "version": "3.0.7",
+  "version": "3.0.8",
   "description": "Decode JWT tokens. Use with NodeJs and browsers. Supports ES, CJS, UMD modules",
   "main": "build/jwt-decode.cjs.js",
   "browser": "build/jwt-decode.js",
@@ -49,6 +49,7 @@
   },
   "files": [
     "lib/",
-    "build/"
+    "build/",
+    "typings.d.ts"
   ]
 }
