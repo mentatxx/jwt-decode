@@ -1,11 +1,14 @@
 {
   "name": "jwt-decode-es",
-  "version": "3.0.2",
+  "version": "3.0.7",
   "description": "Decode JWT tokens. Use with NodeJs and browsers. Supports ES, CJS, UMD modules",
   "main": "build/jwt-decode.cjs.js",
   "browser": "build/jwt-decode.js",
   "module": "build/jwt-decode.mjs",
   "es2015": "build/jwt-decode.mjs",
+  "fes2015": "build/jwt-decode.mjs",
+  "types": "typings.d.ts",
+  "typings": "typings.d.ts",
   "keywords": [
     "jwt",
     "browser"
